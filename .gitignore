@@ -7,3 +7,5 @@ models/*
 credentials.yml
 # exclude m42 config
 actions/m42.yml
+#pycache
+__pycache__/*
