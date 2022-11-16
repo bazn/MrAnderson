@@ -1,0 +1,9 @@
+.rasa
+# exclude everything from models folder
+models/*
+# except for .gitkeep, so that the folder itself is included
+!models/.gitkeep
+# exclude credentials.yml
+credentials.yml
+# exclude m42 config
+actions/m42.yml

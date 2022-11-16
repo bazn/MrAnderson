@@ -1,0 +1,181 @@
+version: "3.1"
+
+stories:
+
+- story: answer out of scope
+  steps:
+  - intent: out_of_scope
+  - action: utter_out_of_scope
+
+- story: give help
+  steps:
+  - intent: help
+  - action: utter_greet
+
+- story: greet + give info
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+- story: open ticket form interrupted
+  steps:
+  - intent: open_ticket
+  - action: open_ticket_form
+  - active_loop: open_ticket_form
+  - intent: out_of_scope
+  - action: utter_out_of_scope
+  - action: open_ticket_form
+  - active_loop: null
+  - action: action_open_incident
+
+- story: open ticket interactive story 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: open_ticket
+  - action: open_ticket_form
+  - active_loop: open_ticket_form  
+  - slot_was_set:
+    - requested_slot: ticket_title
+  - slot_was_set:
+    - ticket_title: Mein Drucker geht nicht mehr
+  - slot_was_set:
+    - requested_slot: ticket_description
+  - slot_was_set:
+    - ticket_description: Seit gestern ist mein Drucker nicht mehr nutzbar, bitte um Hilfe
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_open_incident
+
+# - story: intro
+#   steps:
+#   - intent: greet
+#   - action: utter_ask_name
+#   - action: utter_greet
+
+# - story: user is happy 
+#   steps:
+#   - intent: mood_great
+#   - action: utter_happy
+#   - action: utter_goodbye
+
+# - story: user has a problem
+#   steps:
+#   - intent: ich_habe_ein_problem
+#   - action: action_query_faq
+#   - action: utter_did_that_help
+#   - intent: affirm
+
+# - story: show open requests
+#   steps:
+#     - intent: help_status_open
+#     - action: utter_show_all_open_requests
+
+
+# - story: user supplies customer info
+#   steps:
+#   - intent: greet
+#   - action: utter_ask_for_contact_info
+#   - intent: supply_contact_info
+#     entities:
+#     - name
+#     - email
+#   - action: utter_acknowledge_provided_info
+
+# - story: open incident form interrupted
+#   steps:
+#   - or:
+#     - intent: open_incident
+#   - action: open_incident_form
+#   - active_loop: open_incident_form
+#   - intent: help
+#   - action: utter_help
+#   - action: open_incident_form
+#   - active_loop: null
+#   - action: action_open_incident
+
+# - story: open incident form interrupted
+#   steps:
+#   - or:
+#     - intent: open_incident
+#   - action: open_incident_form
+#   - active_loop: open_incident_form
+#   - intent: out_of_scope
+#   - action: utter_out_of_scope
+#   - action: open_incident_form
+#   - active_loop: null
+#   - action: action_open_incident
+# - story: interactive_story_1
+#   steps:
+#   - intent: greet
+#   - action: utter_ask_name
+#   - action: utter_greet
+
+# - story: interactive_story_1
+#   steps:
+#   - intent: open_incident
+#     entities:
+#     - problem: mit meinem Computer
+#   - action: open_incident_form
+#   - active_loop: open_incident_form
+#   - slot_was_set:
+#     - problem: mit meinem Computer
+#   - slot_was_set:
+#     - requested_slot: problem_description
+
+# - story: Ticket erstellen slot
+#   steps:
+#   - intent: open_ticket
+#   - action: open_ticket_form
+#   - active_loop: open_ticket_form
+#   - slot_was_set:
+#     - ticket_title: "Mein Computer funktioniert nicht"
+#   - slot_was_set:
+#     - requested_slot: ticket_description
+#   - intent: open_ticket
+#     entities:
+#     - ticket_description: "Mein Computer funktioniert nicht"
+#   - slot_was_set:
+#     - ticket_description: "Mein Computer funktioniert nicht"
+#   - slot_was_set:
+#     - requested_slot: email
+#   - intent: open_ticket
+#     entities:
+#     - email: "
+
+
+# - story: open incident form interrupted
+#   steps:
+#   - or:
+#     - intent: open_incident
+#   - action: open_incident_form
+#   - active_loop: open_incident_form
+#   - intent: help
+#   - action: utter_help
+#   - action: open_incident_form
+#   - active_loop: null
+#   - action: action_open_incident
+
+# - story: open incident form interrupted
+#   steps:
+#   - or:
+#     - intent: open_incident
+#   - action: open_incident_form
+#   - active_loop: open_incident_form
+#   - intent: out_of_scope
+#   - action: utter_out_of_scope
+#   - action: open_incident_form
+#   - active_loop: null
+#   - action: action_open_incident
+
+# - story: give help
+#   steps:
+#   - intent: help
+#   - action: utter_help
+- story: FAQ
+  steps:
+  - intent: ich_habe_ein_problem
+  - action: action_query_faq
+  - action: utter_did_that_help
+  - intent: affirm

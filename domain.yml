@@ -1,0 +1,139 @@
+version: '3.1'
+intents:
+- affirm
+- bot_challenge
+- greet
+#- help_status_open
+- ich_habe_ein_problem
+- mood_great
+- nlu_fallback
+- open_ticket:
+    use_entities: []
+- out_of_scope
+#- inform
+#- incident_status
+- help
+- deny
+- goodbye
+
+entities:
+- ticket_title
+- ticket_description
+- confirm
+
+slots:
+  ticket_title:
+    type: text
+    influence_conversation: false
+    mappings:    
+    - type: from_text      
+      conditions:
+      - active_loop: open_ticket_form
+        requested_slot: ticket_title
+  
+  ticket_description:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_text     
+      conditions:
+      - active_loop: open_ticket_form
+        requested_slot: ticket_description
+ 
+  confirm:
+    type: bool
+    influence_conversation: false
+    mappings:
+    - type: from_intent
+      intent: affirm
+      value: true
+      conditions:
+      - active_loop: open_ticket_form
+        requested_slot: confirm
+    - type: from_intent
+      intent: deny
+      value: false
+      conditions:
+      - active_loop: open_ticket_form
+        requested_slot: confirm
+
+  requested_slot:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: custom
+
+forms:
+  open_ticket_form:
+    required_slots:
+      - ticket_title
+      - ticket_description      
+      - confirm
+
+responses:
+  utter_out_of_scope:
+  - text: Sorry, I'm not sure how to respond to that. Type "help" for assistance.
+  utter_greet:
+  - text: Hey! Wie kann ich Dir helfen?
+    buttons:
+    - title: Technical Support
+      payload: /open_ticket
+    - title: Status open Requests
+      payload: /help_status_open
+    - title: Order Something
+      payload: /help_order
+  utter_did_that_help:
+  - text: |- 
+      Hatt dir das weitergeholfen?
+    buttons:
+    - title: Ja
+      payload: /affirm
+    - title: Nein
+      payload: /deny
+  utter_happy:
+  - text: Super - mach weiter so!
+  - text: Freut mich zu hören!
+  utter_goodbye:
+  - text: Tschüss
+  utter_iamabot:
+  - text: Ich bin MrAnderson.
+  utter_ask_rephrase:
+  - text: Sorry, ich habe dich nicht verstanden. Kannst du das bitte anders formulieren?
+  utter_ask_name:
+  - text: Hi, wie ist dein Name?
+  - text: What should we use for the title of this incident? 
+  utter_ask_confirm:
+  - text: |-
+      Soll ich ein Ticket mit folgenden Angaben erstellen? 
+          Betreff: {ticket_title} 
+          Details: {ticket_description}           
+    buttons:
+    - title: Ja
+      payload: /affirm
+    - title: Nein, Abbrechen
+      payload: /deny
+  utter_ticket_creation_canceled:
+  - text: Alles klar - die Anfrage wurde abgebrochen.
+  utter_ask_whatelse:
+  - text: Kann ich dir sonst noch irgendwie helfen?
+  utter_ask_ticket_title:
+  - text: Bitte beschreibe kurz um was es geht
+  utter_ask_ticket_description:
+  - text: Bitte beschreibe deine Anfrage detailiert
+  utter_no_email:
+  - text: Sorry, deine Email wurde nicht im System gefunden.  
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+actions:
+#- action_ask_email
+- action_open_incident
+#- validate_open_ticket_form
+- action_query_faq
+#- call_haystack
+#- utter_ask_name
+#- validate_incident_form
+#- action_check_incident_status
+#- validate_incident_status_form
+

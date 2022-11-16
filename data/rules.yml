@@ -1,0 +1,60 @@
+version: "3.1"
+
+rules:
+
+- rule: Single stage fallback | ask user to choose hat they meant
+  steps:
+  - intent: nlu_fallback
+  - action: utter_ask_rephrase
+
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+
+# - rule: activate open_ticket form
+#   steps:
+#   - intent: open_ticket
+#   - action: open_ticket_form  
+#   - active_loop: open_ticket_form
+
+# - rule: submit open_ticket form
+#   condition:
+#   - active_loop: open_ticket_form
+#   steps:
+#   - action: action_open_incident
+#   - active_loop: null
+#   - action: action_open_incident
+
+# - rule: start open incident form
+#   steps:
+#   - or:
+#     - intent: open_incident
+#   - action: open_incident_form
+#   - active_loop: open_incident_form
+
+# - rule: submit open incident form
+#   condition:
+#     - active_loop: open_incident_form
+#   steps:
+#   - action: open_incident_form
+#   - active_loop: null
+#   - action: action_open_incident
+
+# - rule: Activate Incident form
+#   steps:
+#   - intent: open_incident
+#   - action: open_incident_form
+#   - active_loop: open_incident_form
+
+# - rule: Submit Incident form
+#   condition:
+#     - active_loop: open_incident_form
+#   steps:
+#   - action: open_incident_form
+#   - active_loop: null
+#   - slot_was_set:
+#     - requested_slot: null
+#   - action: utter_submit_incident_form
+#   - action: utter_incident_slots

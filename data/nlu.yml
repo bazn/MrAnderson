@@ -1,0 +1,223 @@
+version: "3.1"
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+    - hallo
+    - guten tag
+    - guten morgen
+    - guten abend
+    - guten nachmittag
+    - hoi
+    - ahohoi
+    - tuut tuut
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+    - Tschüss
+    - Adios
+    - Auf Wiedersehen
+- intent: affirm
+  examples: |
+    - yes
+    - ja
+    - klar
+    - auf jeden fall
+    - ok
+    - korrekt
+    - richtig
+    - richtig so
+    - das stimmt
+    - wieso nicht
+    - warum nicht
+    - genau
+    - verstehe
+    - verstanden
+    - versteht sich
+    - versteht sich von selbst
+- intent: deny
+  examples: |
+    - no
+    - n
+    - nein
+    - ne
+    - nicht
+    - niemals
+    - falsch
+    - nie
+    - ich glaube nicht
+    - ich denke nicht
+    - nope
+    - nö
+    - nöö
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - perfekt
+    - super
+    - fantastisch
+    - grossartig
+    - wunderbar
+    - toll
+    - klasse
+    - prima
+    - sehr gut
+    - sehr schön
+    - ausgezeichnet
+    - exzellent
+    - hervorragend
+    - vorzüglich
+    - vorbildlich
+- intent: bot_challenge
+  examples: |
+    - bist du ein bot?
+    - bist du ein mensch?
+    - rede ich mit einem bot?
+    - rede ich mit einem menschen?
+    - verstehst du mich?
+# - intent: help_status_open
+#   examples: |
+#     - Wie ist der Status meiner offenen tickets?
+#     - Sind meine Tickets bearbeitet worden?
+#     - wurde das [Ticket](ticket) bearbeitet?
+#     - wie ist der Status des [Ticket](ticket)?
+#     - wie ist der Status meiner Bestellungen?
+- intent: ich_habe_ein_problem
+  examples: |
+    - Meine [Maus funktioniert nicht](problem)
+    - Ich habe ein problem [mit meinem Computer](problem)
+    - Ich [kann nicht auf meine Mails zugreifen(problem)
+    - [SAP funktioniert nicht richtig](problem)
+    - [Das Programm funktioniert nicht](problem)
+    - Ich habe ein [Problem mit dem Drucker](problem)
+    - Ich habe ein [Problem mit dem Internet](problem)
+    - Ich habe ein [Problem mit dem Telefon](problem)
+    - Ich habe ein [Problem mit dem Laptop](problem)
+    - Ich habe ein [Problem mit dem PC](problem)
+    - Ich habe ein [Problem mit dem Server](problem)
+    - Ich habe ein [Problem mit dem Netzwerk](problem)
+    - Ich habe ein [Problem mit dem Router](problem)
+    - Ich habe ein [Problem mit dem Switch](problem)
+    - Ich habe ein [Problem mit dem WLAN](problem)
+    - Ich habe ein [Problem mit dem VPN](problem)
+    - Ich habe ein [Problem mit dem NAS](problem)
+    - Ich [kann nicht auf meine Daten zugreifen](problem)
+    - Ich [kann nicht auf meine Dateien zugreifen](problem)
+    - Ich [kann nicht auf meine Ordner zugreifen](problem)
+    - Ich [kann nicht auf meine Dokumente zugreifen](problem)
+    - Ich [kann nicht auf meine E-Mails zugreifen](problem)
+- intent: open_ticket
+  examples: |
+    - ich möchte ein Ticket eröffnen
+    - ich möchte ein Ticket erstellen
+    - ich möchte ein Ticket aufmachen
+    - ich möchte ein Ticket anlegen
+    - ich möchte ein Ticket anfordern
+    - ich möchte ein Ticket beantragen
+    - ich möchte ein Ticket aufgeben
+    - bitte ticket erstellen
+    - bitte ticket anlegen
+    - bitte ticket aufmachen
+    - bitte ticket anfordern
+    - bitte ticket beantragen
+    - bitte ticket aufgeben
+    - Anfrage eröffnen
+    - Anfrage erstellen
+    - Anfrage aufmachen
+    - Anfrage anlegen
+    - Incident melden
+    - Incident erstellen
+    - Incident aufmachen
+    - Incident anlegen
+    - Störung melden
+    - öffne eine [urgent]{"entity": "priority", "value": "high"} störung
+    - Ich möchte ein Ticket öffnen, ist aber nicht dringend [low](priority)
+    - Ich möchte ein Ticket öffnen, ist aber nicht dringend [normal](priority)
+    - Bitte Ticket erstellen [Ich habe keinen Zugriff mehr auf Mails](problem)
+    - Bitte Ticket erstellen [Mein Drucker funktioniert nicht mehr](problem)
+    - Bitte Ticket erstellen [Mein Laptop ist langsam](problem)
+    - Bitte Ticket erstellen [Mein PC ist langsam](problem)
+    - Bitte Ticket erstellen [Mein PC ist abgestürzt](problem)
+    - Bitte Ticket erstellen [Kein zugriff auf VPN](problem)
+    - ich habe ein problem [mit meinem Computer](problem) bitte ticket erstellen
+- intent: out_of_scope
+  examples: |
+    - Ich möchte eine Pizza bestellen
+    - Ich möchte ein Taxi bestellen
+    - Ich möchte ein Taxi rufen
+    - Ich brauche ein UBER
+    - Ich brauche ein Taxi
+    - Mein Fernseher ist kaputt
+    - Ich habe einen kaputten Fernseher
+    - ich möchte ein sandwich
+    - ich möchte ein sandwich bestellen
+# - intent: inform
+#   examples: |
+#     - Meine email ist test@example.com
+#     - meine email ist harry@potter.ch
+#     - text@example.com
+#     - harry@potter.ch
+# - intent: incident_status
+#   examples: |
+#     - Wie ist der Status des Tickets?
+#     - Wie ist der Status des [Tickets](ticket)?
+#     - Wie ist der Status des [Tickets](ticket) [TCK1234](ticket_number)?
+#     - Wie ist der Status des [Tickets](ticket) [TCK1234](ticket_number) [mit dem Drucker](problem)?
+#     - Wie ist der Status des [Tickets](ticket) [TCK1234](ticket_number) [mit dem Laptop](problem)?
+#     - Wie ist der Status des [Tickets](ticket) [TCK1234](ticket_number) [mit dem PC](problem)?
+#     - Wie ist der Status des [Tickets](ticket) [TCK1234](ticket_number) [mit dem Server](problem)?
+#     - Wie ist der Status des [Tickets](ticket) [TCK1234](ticket_number) [mit dem Netzwerk](problem)?
+#     - Wie ist der Status des [Tickets](ticket) [TCK1234](ticket_number) [mit dem Router](problem)?
+#     - Wie ist der Status des [Tickets](ticket) [TCK1234](ticket_number) [mit dem Switch](problem)?
+#     - Wie ist der Status des [Tickets](ticket) [TCK1234](ticket_number) [mit dem WLAN](problem)?
+#     - Wie ist der Status des [Tickets](ticket) [TCK1234](ticket_number) [mit dem VPN](problem)?
+#     - Wie ist der Status des [Tickets](ticket) [TCK1234](ticket_number) [mit dem NAS](problem)?
+#     - Wie ist der Status des [Tickets](ticket) [TCK1234](ticket_number) [mit dem Internet](problem)?
+#     - Wie ist der Status des [Tickets](ticket) [TCK1234](ticket_number) [mit dem Telefon](problem)?
+#     - Wie ist der Status des [Tickets](ticket) [TCK1234](ticket_number) [mit dem Laptop](problem)?
+#     - wie ist der status meiner Tickets?
+#     - prüfe ticket status
+#     - habe ich offene tickets?
+#     - wie ist der Status meiner Tickets
+- intent: help
+  examples: |
+    - ich brauche hilfe
+    - kannst du mir helfen?
+    - grosses Problem
+    - was kannst du tun?
+    - was kann ich tun?
+    - was kann ich machen?
+    - was kann ich tun um das Problem zu lösen?
+    - was kann ich machen um das Problem zu lösen?
+    - was kann ich tun um das Problem zu beheben?
+    - was kann ich machen um das Problem zu beheben?
+  
+- synonym: high
+  examples: |
+    - urgent
+    - wichtig
+    - dringend
+    - eskaliert
+    - eskalieren
